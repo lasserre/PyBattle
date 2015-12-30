@@ -41,9 +41,21 @@ class gameBoard(object):
 	# returns false if not a hit on self, otherwise returns
 	# the shipId of the ship that was hit
 	def isSelfHit(self, pos):
-		# todo: _recordSelfHit(pos) if a hit...
-		# todo: check if ship is sunk
-		pass
+
+		# get a handle to the ship at this position
+		ship = self.self_board[pos[0]][pos[1]]
+
+		if ship == None:
+			return False 	# no ship is here
+		else:
+			ship.recordHoleHit(pos)		# record a hit at this location
+			
+			# check for a ship sinking event
+			if ship.state == SHIP_SUNK:
+				pass	# todo: notify of ship sinking!!
+
+			# return id of ship hit
+			return ship.shipId
 
 	# records a hit on the opponents board
 	def recordTargetHit(self, pos):
@@ -52,10 +64,6 @@ class gameBoard(object):
 	# records a miss on the opponents board
 	def recordTargetMiss(self, pos):
 		self.target_board[pos[0]][pos[1]] = TGT_MISS
-
-	# records a hit on self
-	def _recordSelfHit(self, pos):
-		pass
 
 	# initializes a matrix of x_len by y_len with
 	# cells initialized to init_value
@@ -66,8 +74,8 @@ class gameBoard(object):
 	def _isShipWithinBounds(self, ship):
 
 		# check x index
-		if ship.xPos >= 0 && ship.xPos < X_LEN:
-			if ship.yPos >= 0 && ship.yPos < Y_LEN:
+		if ship.xPos >= 0 and ship.xPos < X_LEN:
+			if ship.yPos >= 0 and ship.yPos < Y_LEN:
 				return true
 
 		# if we get here, the x or y index was out of bounds!

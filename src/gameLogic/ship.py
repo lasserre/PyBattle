@@ -33,6 +33,11 @@ class ship(object):
 	@property
 	def length(self):
 	    return self._length
+
+	# the type of ship
+	@property
+	def shipId(self):
+	    return self._id
 	
 	# the x-position of the ship (0-9 valid, -1 = not placed)
 	@property
@@ -50,10 +55,31 @@ class ship(object):
 	def isVertical(self):
 		return self.orientation == orient.NORTH || self.orientation == orient.SOUTH
 
+	# records a hole hit at the given position, and 
+	# updates state if the ship has been sunk
+	def recordHoleHit(self, pos):
+		idx = self.getHoleIdx(pos)
+		self.holes[idx] = HOLE_HIT	# record the hit!
+
+		hasUnhitHole = False
+
+		for i in range(self.length):
+			if self.holes[i] == HOLE_NORMAL:
+				hasUnhitHole = True
+				break
+
+		# record sunk state if no unhit holes
+		if not hasUnhitHole:
+			self.state = SHIP_SUNK
+
 	# gets the index of the hole at position 'pos'
 	def getHoleIdx(self, pos):
 		
-
+		if self.isHorizontal():
+			return abs(pos[0] - self.xPos)
+		else:
+			return abs(pos[1] - self.yPos)
+			
     # returns a list of positions (xPos, yPos)
     # of each of the holes for this ship
 	def getHoleCoords(self):
