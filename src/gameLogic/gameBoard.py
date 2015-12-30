@@ -20,8 +20,8 @@ class gameBoard(object):
 
 	def __init__(self):
 		# init game board
-		self.self_board = _init_matrix(None, X_LEN, Y_LEN)
-		self.target_board = _init_matrix(TGT_BLANK, X_LEN, Y_LEN)
+		self.self_board = gameBoard._init_matrix(None, X_LEN, Y_LEN)
+		self.target_board = gameBoard._init_matrix(TGT_BLANK, X_LEN, Y_LEN)
 	
 	# returns false if unable to place a ship, true if successful.
 	# the ship should be set with the desired position and orientation
@@ -67,6 +67,7 @@ class gameBoard(object):
 
 	# initializes a matrix of x_len by y_len with
 	# cells initialized to init_value
+	@staticmethod
 	def _init_matrix(init_value, x_len, y_len):
 		return [[init_value for i in range(x_len)] for j in range(y_len)]
 
