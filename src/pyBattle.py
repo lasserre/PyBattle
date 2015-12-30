@@ -2,6 +2,9 @@
 import sys
 
 def startNewGame():
+	print ""
+	print "TODO: start listening for network connections..."
+	print ""
 	print "starting new game..."
 
 def joinGame():
