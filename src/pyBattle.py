@@ -1,11 +1,21 @@
 # main.py...
 import sys
+sys.path.append('gameLogic')	# add gameLogic to path
+from gameEngine import *
+from player import *
 
 def startNewGame():
 	print ""
 	print "TODO: start listening for network connections..."
 	print ""
 	print "starting new game..."
+
+	# init players/engine
+	p1 = player()
+	p2 = player()
+	engine = gameEngine(p1, p2)
+
+	engine.startGame()	# start the game
 
 def joinGame():
 	print "joining game..."
