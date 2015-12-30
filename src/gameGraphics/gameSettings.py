@@ -9,8 +9,8 @@ BLANK = ' '
 NEUTRAL_COLOR = tColors.ENDC
 
 # screen options
-HORIZ_MARGIN = 2
-VERT_MARGIN = 1
+HORIZ_MARGIN = 1
+VERT_MARGIN = 0
 STATUS_MARGIN = 1
 
 # target options

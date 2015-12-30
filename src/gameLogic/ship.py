@@ -28,6 +28,8 @@ class ship(object):
 		self.orientation = orient.NORTH
 		self.state = SHIP_ALIVE
 		self.holes = [HOLE_NORMAL] * length
+		self.xPos = -1
+		self.yPos = -1
 
 	# the length of the ship
 	@property
@@ -38,16 +40,6 @@ class ship(object):
 	@property
 	def shipId(self):
 	    return self._id
-	
-	# the x-position of the ship (0-9 valid, -1 = not placed)
-	@property
-	def xPos(self):
-	    return self._xPos
-
-	# the y-position of the ship (0-9 valid, -1 = not placed)	
-	@property
-	def yPos(self):
-	    return self._yPos
 
 	def isHorizontal(self):
 		return self.orientation == orient.EAST or self.orientation == orient.WEST
@@ -87,7 +79,7 @@ class ship(object):
 		xStart = 0
 		yStart = 0
 
-		if isHorizontal():
+		if self.isHorizontal():
 			# take y as-is
 			yStart = self.yPos
 
@@ -110,14 +102,14 @@ class ship(object):
 		# return a list of tuples representing the positions of the holes
 		holeCoords = []
 
-		if isHorizontal():
+		if self.isHorizontal():
 			# iterate over x positions...
 			for x in range(xStart, xStart + self.length):
-				holeCoords.append((x, yPos))
+				holeCoords.append((x, self.yPos))
 		else:
 			# iterate over y positions...
 			for y in range(yStart, yStart + self.length):
-				holeCoords.append((xPos, y))
+				holeCoords.append((self.xPos, y))
 
 		return holeCoords
 

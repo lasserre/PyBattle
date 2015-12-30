@@ -12,6 +12,7 @@ import gameBoard
 from ship import *
 import terminalColors as tColors
 import gameSettings as pref
+import shipOrientations as orient
 
 class terminalGui(object):
 
@@ -141,5 +142,10 @@ class terminalGui(object):
 graphics = terminalGui()
 board = gameBoard.gameBoard()
 graphics.redrawBoard(board)
+c = carrier()
+c.xPos = 3
+c.yPos = 2
+c.orientation = orient.EAST
+board.tryPlaceShip(c)
 time.sleep(3)
 graphics.redrawBoard(board)

@@ -27,9 +27,9 @@ class gameBoard(object):
 	# the ship should be set with the desired position and orientation
 	def tryPlaceShip(self, ship):
 
-		if _isShipWithinBounds(ship):
+		if self._isShipWithinBounds(ship):
 			# check for conflicts with other ships
-			if not _doesShipConflictWithExisting(ship):
+			if not self._doesShipConflictWithExisting(ship):
 				# no conflict - place it!
 				for pos in ship.getHoleCoords():
 					self.self_board[pos[0]][pos[1]] = ship 	# set pointer to ship
@@ -77,10 +77,10 @@ class gameBoard(object):
 		# check x index
 		if ship.xPos >= 0 and ship.xPos < X_LEN:
 			if ship.yPos >= 0 and ship.yPos < Y_LEN:
-				return true
+				return True
 
 		# if we get here, the x or y index was out of bounds!
-		return false
+		return False
 
 	# returns true if ship conflicts with an existing ship
 	# location
