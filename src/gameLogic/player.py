@@ -1,7 +1,7 @@
 # player.py
 # #################
 # Represents a pyBattle player
-
+import time
 class player(object):
 
 	def __init__(self, name):
@@ -12,6 +12,9 @@ class player(object):
 	# placed ship object (with position and orientation 
 	# set properly)
 	def placeShip(self, shipId, gameBoard):
+		while 1:
+			print "Placing...\n"
+			time.sleep(3)
 		pass
 
 	# prompts the player to call his next shot.

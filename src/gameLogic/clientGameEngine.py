@@ -12,8 +12,16 @@ class clientGameEngine(gameEngine):
 
 	def _beginPlaceShips(self):
 		# wait for "place ships" command from server
-		pass
+		while len(self._gameConnection.recv_buff) <= 0:pass
+
+		command = self._gameConnection.get_most_recent()
+		if command != "Place":
+			return
 
 	def _endPlaceShips(self):
 		# tell server I'm done (send ship locations...)
+		self._gameConnection.send_message("done")
 		pass
+
+	def _setLocalPlayer(self):
+		self._localPlayer = self._p2

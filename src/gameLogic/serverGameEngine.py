@@ -12,7 +12,7 @@ class serverGameEngine(gameEngine):
 
 	def _beginPlaceShips(self):
 		# send "place ships" command to client
-		self._gameConnection.send_message("Time to place your ships")
+		self._gameConnection.send_message("Place")
 		pass
 
 	def _endPlaceShips(self):
@@ -22,3 +22,6 @@ class serverGameEngine(gameEngine):
 		print reply
 		# (make sure I don't "miss" him telling me...)
 		pass
+
+	def _setLocalPlayer(self):
+		self._localPlayer = self._p1

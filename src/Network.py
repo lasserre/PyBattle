@@ -88,7 +88,7 @@ class GameConnection:
 			if len(message) > 0:
 				print "Received: " + message
 				self.recv_buff.append(message)
-				time.sleep(2)
+				#time.sleep(2)
 
 	def get_most_recent(self):
 		if len(self.recv_buff) > 0:

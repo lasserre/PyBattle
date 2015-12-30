@@ -16,15 +16,18 @@ class gameEngine(object):
 	def __init__(self, graphicsEngine, gameConnection, p1, p2):
 		
 		print "Game Created with " + p1.name + " and " + p2.name
-		self._board = gameBoard()
+		#self._board = gameBoard()
 		self._p1 = p1
 		self._p2 = p2
 		self._graphics = graphicsEngine
 		self._gameConnection = gameConnection
+		self._localPlayer = None
 
 	def startGame(self):
 
 		# place ships (show "waiting on [player]...")
+		self._setLocalPlayer()
+
 		self._placeShips()
 
 		self._chooseWhoGoesFirst()
@@ -51,12 +54,17 @@ class gameEngine(object):
 	def _endPlaceShips(self):
 		pass
 
+	def _setLocalPlayer(self):
+		pass
+
 	# performs the placeShips phase of game setup
 	def _placeShips(self):
 		
 		self._beginPlaceShips()
 
 		# place my ships...
+		_localPlayer.placeShip()
+
 
 		self._endPlaceShips()
 
