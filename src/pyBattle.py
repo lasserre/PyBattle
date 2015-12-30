@@ -4,30 +4,67 @@ sys.path.append('gameLogic')	# add gameLogic to path
 from gameEngine import *
 from player import *
 from serverGameEngine import *
+from clientGameEngine import *
+from Network import *
 
 def startNewGame():
-	print ""
-	print "TODO: start listening for network connections..."
-	print ""
-	print "starting new game..."
-
-	# init players/engine
-	p1 = player("Caleb")
-	p2 = player("Luke")
-
-	# todo: am i client or server?
-	engine = serverGameEngine(None, p1, p2)
-
+	
+	engine = create_networked_game()
 	engine.startGame()	# start the game
 
 def joinGame():
 	print "joining game..."
+
+	engine = join_networked_game()
+	engine.startGame()
 
 	# cls: just need to FIND the server here...we will
 	# handle game setup/synchronization in engine.startGame()
 
 def exit():
 	sys.exit()
+
+def create_networked_game():
+	serverName = raw_input("Please Enter Your Name: ")
+	#create server connection and wait for client
+	helper = NetworkHelper()
+	gameConnection = helper.listen_for_connections()
+	gameConnection.run(True)
+
+
+	#wait for player info from client
+	gameConnection.send_message(serverName)
+	print "Waiting for player 2 name"
+	
+	while len(gameConnection.recv_buff) <= 0:pass
+
+	clientName = gameConnection.get_most_recent()
+
+	# init players/engine
+	p1 = player(serverName)
+	p2 = player(clientName)
+
+	return serverGameEngine(None, gameConnection, p1, p2)
+
+def join_networked_game():
+	helper = NetworkHelper()
+	gameConnection = helper.connect_to_server()
+	gameConnection.run(True)
+
+	while len(gameConnection.recv_buff) <= 0:pass
+
+	serverName = gameConnection.get_most_recent()
+	clientName = raw_input("Please Enter Your Name: ")
+
+	gameConnection.send_message(clientName)
+
+	p1 = player(serverName)
+	p2 = player(clientName)
+
+	return clientGameEngine(None,gameConnection,p1,p2)
+
+
+
 
 # Program Constants
 _menu_separator = "---------------------------"

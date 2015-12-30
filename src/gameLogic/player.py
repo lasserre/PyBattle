@@ -4,9 +4,8 @@
 
 class player(object):
 
-	def __init__(self, name, playerId):
+	def __init__(self, name):
 		self.name = name
-		self.id = playerId
 
 	# prompts the player to place the ship with the
 	# given ship id. This function must return the

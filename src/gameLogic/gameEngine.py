@@ -14,12 +14,14 @@ class gameEngine(object):
 	# graphicsEngine - the graphics engine for pyBattle
 	# p1 - player 1 (by convention, the server)
 	# p2 - player 2 (by convention, the client)
-	def __init__(self, graphicsEngine, p1, p2):
+	def __init__(self, graphicsEngine, gameConnection, p1, p2):
 		
+		print "Game Created with " + p1.name + " and " + p2.name
 		self._board = gameBoard()
 		self._p1 = p1
 		self._p2 = p2
 		self._graphics = graphicsEngine
+		self._gameConnection = gameConnection
 
 	def startGame(self):
 
@@ -27,6 +29,13 @@ class gameEngine(object):
 		self._placeShips()
 
 		self._chooseWhoGoesFirst()
+
+		self._playGame()
+
+
+
+	
+
 
 	# this function is called by the player with
 	# a (xPos, yPos) tuple (pos) of the desired
@@ -46,12 +55,18 @@ class gameEngine(object):
 	# performs the placeShips phase of game setup
 	def _placeShips(self):
 		
-		_beginPlaceShips()
+		self._beginPlaceShips()
 
 		# place my ships...
 
-		_endPlaceShips()
+		self._endPlaceShips()
 
 	# derived classes must implement
 	def _chooseWhoGoesFirst(self):
 		pass
+
+	#This method is the method that loops continually until the game is over
+	def _playGame(self):
+		while True:
+			#TODO: main Turn-based game logic goes here
+			pass
