@@ -3,6 +3,7 @@ import sys
 sys.path.append('gameLogic')	# add gameLogic to path
 from gameEngine import *
 from player import *
+from serverGameEngine import *
 
 def startNewGame():
 	print ""
@@ -11,14 +12,19 @@ def startNewGame():
 	print "starting new game..."
 
 	# init players/engine
-	p1 = player()
-	p2 = player()
-	engine = gameEngine(p1, p2)
+	p1 = player("Caleb")
+	p2 = player("Luke")
+
+	# todo: am i client or server?
+	engine = serverGameEngine(None, p1, p2)
 
 	engine.startGame()	# start the game
 
 def joinGame():
 	print "joining game..."
+
+	# cls: just need to FIND the server here...we will
+	# handle game setup/synchronization in engine.startGame()
 
 def exit():
 	sys.exit()
