@@ -50,10 +50,10 @@ class ship(object):
 	    return self._yPos
 
 	def isHorizontal(self):
-		return self.orientation == orient.EAST || self.orientation == orient.WEST
+		return self.orientation == orient.EAST or self.orientation == orient.WEST
 
 	def isVertical(self):
-		return self.orientation == orient.NORTH || self.orientation == orient.SOUTH
+		return self.orientation == orient.NORTH or self.orientation == orient.SOUTH
 
 	# records a hole hit at the given position, and 
 	# updates state if the ship has been sunk
