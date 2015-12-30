@@ -40,7 +40,7 @@ class NetworkHelper:
 
 	def ask_for_server_ip(self):
 		ip = raw_input("What is the server IP? ")
-		return '192.168.0.128'
+		return ip
 	# def read_from_socket(self):
 	# 	recv_data = self.socket.recv(4096)
 	# 	return recv_data
