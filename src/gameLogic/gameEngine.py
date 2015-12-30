@@ -9,7 +9,6 @@ from gameBoard import *
 #ROLE_CLIENT = 1
 
 class gameEngine(object):
-	"""The game engine for pyBattle"""
 	
 	# graphicsEngine - the graphics engine for pyBattle
 	# p1 - player 1 (by convention, the server)
